@@ -582,8 +582,13 @@ section.card{background-image:linear-gradient(180deg,rgba(255,252,245,.90),rgba(
   // Nombre del invitado desde el enlace: ?invitado=Familia%20Perez
   (function(){
     var q=new URLSearchParams(window.location.search);
-    var n=(q.get('invitado')||q.get('para')||q.get('i')||'').replace(/\s+/g,' ').trim().slice(0,60);
+    var raw=(q.get('invitado')||q.get('para')||q.get('i')||'');
+    try{ if(raw) sessionStorage.setItem('guest',raw); else raw=sessionStorage.getItem('guest')||''; }catch(e){}
+    var n=raw.replace(/[-_+]+/g,' ').replace(/([a-záéíóúñü])([A-ZÁÉÍÓÚÑÜ])/g,'$1 $2').replace(/([A-ZÁÉÍÓÚÑÜ])([A-ZÁÉÍÓÚÑÜ][a-záéíóúñü])/g,'$1 $2').replace(/\s+/g,' ').trim().slice(0,60);
+    var con=['y','e','de','del','la','las','los','el'];
+    n=n.split(' ').map(function(w,i){return (i>0&&con.indexOf(w.toLowerCase())>-1)?w.toLowerCase():w;}).join(' ');
     if(!n) return;
+    try{ if(window.location.search) history.replaceState(null,'',window.location.pathname); }catch(e){}
     var el=document.getElementById('guestName'), img=document.querySelector('.reveal-name .nm-img');
     if(!el||!img) return;
     var len=n.length, size=len<=10?68:len<=16?58:len<=26?46:38;
