@@ -525,27 +525,20 @@ footer .eyebrow{font-size:21px;}
   border:1px solid rgba(184,134,47,.32); border-radius:999px;
   box-shadow:0 2px 8px -3px rgba(138,94,28,.28), inset 0 0 0 1px rgba(255,255,255,.5);
 }
-#guestSec .guest-names div::before{
-  content:""; flex:0 0 auto; width:26px; height:21px;
-  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2026'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23fbe3a0'/%3E%3Cstop%20offset='.55'%20stop-color='%23d9a441'/%3E%3Cstop%20offset='1'%20stop-color='%23a8741f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20d='M16%2012.5C12.5%201.5%203%20-0.5%202%205.5C1.200%2010.500%208%2014%2016%2013.500Z'%20fill='url(%23g)'/%3E%3Cpath%20d='M16%2012.5C19.500%201.500%2029%20-0.500%2030%205.500C30.800%2010.500%2024%2014%2016%2013.500Z'%20fill='url(%23g)'/%3E%3Cpath%20d='M16%2013.500C10%2014.500%204.500%2018%207%2023C9.500%2026.500%2015%2020.500%2016%2015.500Z'%20fill='%23c9b6df'/%3E%3Cpath%20d='M16%2013.500C22%2014.500%2027.500%2018%2025%2023C22.500%2026.500%2017%2020.500%2016%2015.500Z'%20fill='%23c9b6df'/%3E%3Ccircle%20cx='8'%20cy='6.500'%20r='2'%20fill='%23fff8e2'%20opacity='.75'/%3E%3Ccircle%20cx='24'%20cy='6.500'%20r='2'%20fill='%23fff8e2'%20opacity='.75'/%3E%3Cellipse%20cx='16'%20cy='14'%20rx='1.100'%20ry='6.500'%20fill='%236a440d'/%3E%3Cpath%20d='M15.500%208C14.500%204.500%2013%203.200%2011.500%202.800M16.500%208C17.500%204.500%2019%203.200%2020.500%202.800'%20stroke='%236a440d'%20stroke-width='.7'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
-  filter:drop-shadow(0 1px 2px rgba(138,94,28,.35));
-  transform:rotate(-8deg); transform-origin:50% 60%;
-  animation:bfBulletFlap 4.8s ease-in-out infinite;
-}
-#guestSec .guest-names div:nth-child(2n)::before{transform:rotate(8deg); animation-delay:-1.6s;}
-#guestSec .guest-names div:nth-child(3n)::before{animation-delay:-3.1s;}
-@keyframes bfBulletFlap{
-  0%,55%,100%{transform:rotate(var(--bfr,-8deg)) scaleX(1)}
-  63%{transform:rotate(var(--bfr,-8deg)) scaleX(.35)}
-  71%{transform:rotate(var(--bfr,-8deg)) scaleX(1)}
-  79%{transform:rotate(var(--bfr,-8deg)) scaleX(.4)}
-  87%{transform:rotate(var(--bfr,-8deg)) scaleX(1)}
-}
-#guestSec .guest-names div:nth-child(2n){--bfr:8deg;}
-@media (prefers-reduced-motion:reduce){#guestSec .guest-names div::before{animation:none !important}}
 
-/* ===== V16: imagen del nombre al abrir el sobre, mas pequena ===== */
-.reveal-name .nm-img{width:min(64vw,260px) !important; height:auto;}
+/* ===== V17: mariposas de imagen mas pequenas + invitados fluyendo en todo el recuadro ===== */
+
+#guestSec .guest-names{flex-direction:row !important; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px 8px !important; margin:16px auto 6px !important;}
+#guestSec .guest-names div{font-size:19px !important; padding:6px 15px 6px 10px !important; gap:7px !important; text-align:left;}
+
+/* ===== V18: viñetas con las mismas mariposas de la pagina ===== */
+#guestSec .guest-names div .bi{flex:0 0 auto; width:30px; height:28px; display:block;
+  filter:drop-shadow(0 2px 4px rgba(120,84,30,.3)) drop-shadow(0 0 6px rgba(242,199,102,.55));
+  transform:rotate(var(--r,-8deg)); transform-origin:50% 60%; animation:perchBeat 4.8s ease-in-out infinite;}
+#guestSec .guest-names div:nth-child(2n) .bi{--r:8deg; animation-delay:-1.6s;}
+#guestSec .guest-names div:nth-child(3n) .bi{animation-delay:-3.1s;}
+#guestSec .guest-names div{padding:5px 15px 5px 9px !important;}
+@media (prefers-reduced-motion:reduce){#guestSec .guest-names div .bi{animation:none !important}}
 </style>
 </head>
 <body>
@@ -716,7 +709,7 @@ footer .eyebrow{font-size:21px;}
       if(!g||!g.nombres.length) return;
       GUEST=g;
       var ul=document.getElementById('guestList'); ul.innerHTML='';
-      g.nombres.forEach(function(n){var d=document.createElement('div'); d.textContent=n; ul.appendChild(d);});
+      var BF=['b-l5','b-r1','b-l4','b-r2','b-front','b-r3'];g.nombres.forEach(function(n,idx){var d=document.createElement('div');var im=document.createElement('i'); im.className='bi '+BF[idx%BF.length]; im.setAttribute('aria-hidden','true');var t=document.createElement('span'); t.textContent=n; d.appendChild(im); d.appendChild(t); ul.appendChild(d);});
       document.getElementById('guestCount').textContent=g.pases+(g.pases==1?' PASE':' PASES');
       document.getElementById('guestSec').hidden=false;
       var sel=document.getElementById('guests'); if(sel){ sel.style.display='none'; var br=sel.nextElementSibling; if(br&&br.tagName==='BR') br.style.display='none'; }
