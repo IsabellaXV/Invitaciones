@@ -539,6 +539,37 @@ footer .eyebrow{font-size:21px;}
 #guestSec .guest-names div:nth-child(3n) .bi{animation-delay:-3.1s;}
 #guestSec .guest-names div{padding:5px 15px 5px 9px !important;}
 @media (prefers-reduced-motion:reduce){#guestSec .guest-names div .bi{animation:none !important}}
+
+/* ===== V19: "Toca para abrir" bajo el sello, fecha mas grande, versiculo mas cerca ===== */
+.tap-hint{
+  position:absolute !important; left:50% !important; right:auto !important; bottom:auto !important;
+  top:calc(50% + 56px) !important; width:auto; white-space:nowrap; z-index:6;
+  transform:translateX(-50%);
+  font-size:19px !important; font-weight:700 !important; letter-spacing:.08em !important;
+  color:#5a3a1a !important; text-shadow:none !important; opacity:1;
+  padding:8px 24px 9px; border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,252,245,.96),rgba(250,241,224,.94));
+  border:1.5px solid #d7b57f;
+  box-shadow:0 0 0 3px rgba(242,199,102,.20), 0 8px 16px -8px rgba(90,60,20,.45);
+  animation:tapPulse 2s ease-in-out infinite !important;
+}
+@keyframes tapPulse{
+  0%,100%{transform:translateX(-50%) scale(1); box-shadow:0 0 0 3px rgba(242,199,102,.20), 0 8px 16px -8px rgba(90,60,20,.45);}
+  50%{transform:translateX(-50%) scale(1.05); box-shadow:0 0 0 7px rgba(242,199,102,.30), 0 8px 18px -8px rgba(90,60,20,.5);}
+}
+.envelope.open .tap-hint{animation:none !important; opacity:0 !important; transition:opacity .3s;}
+@media (prefers-reduced-motion:reduce){.tap-hint{animation:none !important}}
+
+.sub{font-size:clamp(20px,6.4vw,28px) !important; letter-spacing:.09em !important; font-weight:600 !important; margin-top:14px !important; white-space:nowrap;}
+
+#hero{min-height:0 !important; justify-content:flex-start !important; padding-top:clamp(70px,15vh,140px) !important; padding-bottom:6px !important;}
+#countdown{margin-top:22px !important;}
+.verse-section{padding-top:14px !important; padding-bottom:30px !important;}
+.verse-section .verse{margin:0 auto !important;}
+.verse-section .verse-reference{margin:6px 0 0 !important;}
+.verse-section .verse-divider{margin:0 !important;}
+.verse-section .verse-message{margin:14px auto 0 !important; max-width:340px;}
+.verse-section .verse-invitation{margin:12px auto 0 !important; max-width:340px;}
 </style>
 </head>
 <body>
@@ -594,8 +625,25 @@ footer .eyebrow{font-size:21px;}
     </div>
   </section>
 
-  <section>
-    <p class="verse">"Este es el día que hizo el Señor; nos gozaremos y alegraremos en él." — Salmo 118:24</p>
+  <section class="verse-section">
+      <p class="verse">
+          “Guárdame como a la niña de tus ojos;<br>
+          escóndeme bajo la sombra de tus alas.”
+      </p>
+
+      <p class="verse-reference">Salmo 17:8</p>
+
+      <div class="verse-divider"></div>
+
+      <p class="verse-message">
+          Bajo la mirada y protección de Dios, hoy comienza un nuevo capítulo de mi historia.
+          Guardo en mi corazón la niña que he sido y recibo con ilusión la joven en la que me estoy convirtiendo.
+      </p>
+
+      <p class="verse-invitation">
+          Acompáñame a celebrar el comienzo de esta hermosa etapa:<br>
+          <strong>mis XV años. ✨</strong>
+      </p>
   </section>
 
   <section id="guestSec" class="card rv" hidden><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.400 2.700-5.500 6-5.500s6 2.100 6 5.500"/><circle cx="17" cy="9" r="2.500"/><path d="M16.500 14.200c2.700.1 4.500 1.900 4.500 4.800"/></svg></div>
@@ -611,25 +659,20 @@ footer .eyebrow{font-size:21px;}
     <div class="big">Domingo 01 de noviembre, 2026</div>
     <div class="small">Recepción desde las 7:00 PM</div>
     <div class="rule"></div>
-    <div class="small">Misa de acción de gracias · 12:00 PM - Sábado 31 de octubre, 2026</div>
+    <div class="small">Agradecemos tú puntualidad.</div>
   </section>
 
   <section class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></div><div class="perch pi l" style="--w:56px;--h:65px;--r:-10deg" aria-hidden="true"><i class="bi b-r1"></i></div>
     <div class="label">¿DÓNDE?</div>
-    <div class="big">Salón de Eventos Encanto de Estrellas</div>
+    <div class="big">Encanto - Salón de Eventos</div>
     <div class="small">Cra. 47 #61-16, Prado Centro, Medellín</div>
-    <a class="link" href="https://www.google.com/maps/search/?api=1&query=Cra+47+%2361-16+Prado+Centro+Medellin" target="_blank" rel="noopener">CÓMO LLEGAR</a>
+    <a class="link" href="https://maps.app.goo.gl/XUqHsTbDpgA9xUve9?g_st=iw" target="_blank" rel="noopener">CÓMO LLEGAR</a>
   </section>
 
   <section class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6l-1 5c0 2 3 3.500 4 6l1 7H5l1-7c1-2.500 4-4 4-6z"/><path d="M8.500 14h7"/></svg></div><div class="perch pi r" style="--w:60px;--h:65px;--r:10deg" aria-hidden="true"><i class="bi b-l4"></i></div>
     <div class="label">DRESS CODE</div>
-    <div class="big">Formal elegante/formal</div>
+    <div class="big">Formal elegante</div>
     <div class="small">Preferiblemente colores oscuros</div>
-  </section>
-
-  <section class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.500 4.500 0 0 1 8-2.800A4.500 4.500 0 0 1 20 10c0 6-8 11-8 11z"/></svg></div><div class="perch pi l" style="--w:58px;--h:63px;--r:-12deg" aria-hidden="true"><i class="bi b-r2"></i></div>
-    <div class="label">CON LA BENDICIÓN DE MIS PADRES</div>
-    <div class="hosts">Duvan Román &amp; Alejandra Holguin</div>
   </section>
 
   <section class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9"/><path d="M12 8C10 3 6 4 7.500 6.500 8.500 8 12 8 12 8zM12 8c2-5 6-4 4.500-1.500C15.500 8 12 8 12 8z"/></svg></div><div class="perch pi r" style="--w:72px;--h:51px;--r:8deg" aria-hidden="true"><i class="bi b-front"></i></div>
@@ -793,7 +836,7 @@ footer .eyebrow{font-size:21px;}
   }
   tick(); setInterval(tick,1000);
 
-  var phone="573001234567";
+  var phone="573243716735";
   var waBtn=document.getElementById('waBtn');
   var guests=document.getElementById('guests');
   function updateWa(){
